@@ -4,7 +4,22 @@
         {
             "type": "shell",
             "label": "Compile/link C++ files",
-            "command": "g++ -c -g *.cpp; g++ -g *.o; rm *.o",
+            "command": "rm a.out 2> /dev/null; clear; g++ -c -g -Werror=uninitialized -Werror --std=c++20 *.cpp; g++ -g *.o; rm *.o 2> /dev/null",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": {
+                "pattern": { "regexp": "error" }
+            },
+            "group": {
+                "isDefault": true,
+                "kind": "build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Compile/link C++ files, allow warnings",
+            "command": "rm a.out 2> /dev/null; clear; g++ -c -g --std=c++20 *.cpp; g++ -g *.o; rm *.o 2> /dev/null",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
